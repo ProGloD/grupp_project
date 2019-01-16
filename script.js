@@ -1,4 +1,4 @@
-document.querySelector("add-list").addEventListener("click", addList);
+document.querySelector(".add-list").addEventListener("click", addList);
 
 let allLists = [];
 

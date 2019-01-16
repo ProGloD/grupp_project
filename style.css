@@ -1,0 +1,28 @@
+.add-list {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  padding: 0;
+  border: none;
+  background-color: #000000;
+  color: #ffffff;
+  border-radius: 28px;
+  box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2),
+    0px 6px 10px 0px rgba(0, 0, 0, 0.14),
+    0px 1px 18px 0px rgba(0, 0, 0, 0.12);
+  transition: box-shadow 0.25s ease-in-out;
+  outline: none;
+  cursor: pointer;
+}
+
+.add-list:hover {
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+.add-list:active {
+  background-color: #323232;
+}
+
+.add-list__icon {
+  padding: 16px;
+}
