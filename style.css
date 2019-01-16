@@ -1,3 +1,14 @@
+/*    General settings     */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  box-sizing: border-box;
+}
+
+/*     FAB Styling     */
 .add-list {
   position: fixed;
   bottom: 1rem;

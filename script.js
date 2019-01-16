@@ -2,6 +2,7 @@ document.querySelector(".add-list").addEventListener("click", addList);
 
 let allLists = [];
 
+// Create new list
 function addList() {
   // List
   let list = document.createElement("div");
@@ -11,6 +12,7 @@ function addList() {
   // Title
   let title = document.createElement("input");
   title.classList.add("list__title");
+  title.value = "New list";
   list.appendChild(title);
 
   // Remove button
@@ -29,7 +31,7 @@ function addList() {
   listView.classList.add("list__view");
   list.appendChild(listView);
 
-  // Add button
+  // Add item button
   let add = document.createElement("button");
   add.classList.add("list__add");
   list.appendChild(add);
@@ -46,6 +48,11 @@ function addList() {
 
 };
 
-function removeList() {}
+// remove list
+function removeList(e) {
+  let button = e.target;
+  let parent = button.parentNode.parentNode;
+  parent.parentNode.removeChild(parent);
+}
 
 function addItem() {}
