@@ -1,13 +1,30 @@
-document.querySelector(".add-list").addEventListener("click", addList);
+const body = document.querySelector('body')
 
-let allLists = [];
+// Change theme mode
+const theme = document.querySelector(".theme");
+theme.addEventListener("click", themeChanger);
+
+function themeChanger() {
+  const themeIcon = document.querySelector(".theme__icon");
+
+  body.classList.toggle("dark");
+  theme.classList.toggle("theme--dark");
+
+  if (body.classList.contains("dark")) {
+    themeIcon.textContent = "brightness_5";
+  } else {
+    themeIcon.textContent = "brightness_3";
+  }
+}
 
 // Create new list
+document.querySelector(".add-list").addEventListener("click", addList);
+
 function addList() {
   // List
   let list = document.createElement("div");
   list.classList.add("list");
-  document.querySelector("body").appendChild(list);
+  body.appendChild(list);
 
   // Title
   let title = document.createElement("input");
@@ -38,14 +55,13 @@ function addList() {
 
   let addIcon = document.createElement("i");
   addIcon.classList.add("material-icons");
-  addIcon.addEventListener("click", addItem);
+  addIcon.addEventListener("click", addNote);
   addIcon.textContent = "add";
   add.appendChild(addIcon);
 
   let span = document.createElement("span");
   span.textContent = "Add note";
   add.appendChild(span);
-
 };
 
 // remove list
@@ -55,4 +71,13 @@ function removeList(e) {
   parent.parentNode.removeChild(parent);
 }
 
-function addItem() {}
+
+function addNote() {}
+
+function noteMenu() {}
+
+function removeNote() {}
+
+function moveNote() {}
+
+function colorPicker() {}
