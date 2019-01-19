@@ -33,15 +33,12 @@ function addList() {
   list.appendChild(title);
 
   // Remove button
-  let remove = document.createElement("button");
+  let remove = document.createElement("i");
   remove.classList.add("list__remove");
+  remove.classList.add("material-icons");
+  remove.addEventListener("click", removeList);
+  remove.textContent = "clear";
   list.appendChild(remove);
-
-  let removeIcon = document.createElement("i");
-  removeIcon.classList.add("material-icons");
-  removeIcon.addEventListener("click", removeList);
-  removeIcon.textContent = "clear";
-  remove.appendChild(removeIcon);
 
   // Note viewer
   let listView = document.createElement("div");
@@ -51,11 +48,11 @@ function addList() {
   // Add item button
   let add = document.createElement("button");
   add.classList.add("list__add");
+  add.addEventListener("click", addNote);
   list.appendChild(add);
 
   let addIcon = document.createElement("i");
   addIcon.classList.add("material-icons");
-  addIcon.addEventListener("click", addNote);
   addIcon.textContent = "add";
   add.appendChild(addIcon);
 
@@ -65,19 +62,21 @@ function addList() {
 };
 
 // remove list
-function removeList(e) {
-  let button = e.target;
-  let parent = button.parentNode.parentNode;
-  parent.parentNode.removeChild(parent);
+function removeList() {
+  body.removeChild(this.parentNode);
 }
 
+// create new note
+function addNote(e) {}
 
-function addNote() {}
-
+// create note menu
 function noteMenu() {}
 
+// remove note
 function removeNote() {}
 
+// move note to another list
 function moveNote() {}
 
+// color picker for note background
 function colorPicker() {}
