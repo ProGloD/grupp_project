@@ -43,8 +43,9 @@ function addList() {
   let remove = document.createElement("i");
   remove.classList.add("material-icons");
   remove.classList.add("list__remove");
-  remove.addEventListener("click", removeList);
   remove.textContent = "clear";
+  remove.setAttribute("title", "Remove list");
+  remove.addEventListener("click", removeList);
   list.appendChild(remove);
 
   // Note viewer
@@ -53,21 +54,13 @@ function addList() {
   list.appendChild(listView);
 
   // Add item button
-  let add = document.createElement("button");
+  let add = document.createElement("i");
+  add.classList.add("material-icons");
   add.classList.add("list__add-note");
+  add.textContent = "add";
+  add.setAttribute("title", "Add note");
   add.addEventListener("click", addNote);
   list.appendChild(add);
-
-  let addIcon = document.createElement("i");
-  addIcon.classList.add("material-icons");
-  addIcon.classList.add("list__add-note__icon");
-  addIcon.textContent = "add";
-  add.appendChild(addIcon);
-
-  let span = document.createElement("span");
-  span.classList.add("list__add-note__text");
-  span.textContent += "Add note";
-  add.appendChild(span);
 };
 
 // remove list
