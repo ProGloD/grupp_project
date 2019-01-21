@@ -20,6 +20,7 @@ function themeChanger() {
 // Create new list
 document.querySelector(".add-list").addEventListener("click", addList);
 
+// Create new list
 function addList() {
   // List
   let list = document.createElement("div");
@@ -34,8 +35,8 @@ function addList() {
 
   // Remove button
   let remove = document.createElement("i");
-  remove.classList.add("list__remove");
   remove.classList.add("material-icons");
+  remove.classList.add("list__remove");
   remove.addEventListener("click", removeList);
   remove.textContent = "clear";
   list.appendChild(remove);
@@ -47,7 +48,7 @@ function addList() {
 
   // Add item button
   let add = document.createElement("button");
-  add.classList.add("list__add");
+  add.classList.add("list__add-note");
   add.addEventListener("click", addNote);
   list.appendChild(add);
 
@@ -57,6 +58,7 @@ function addList() {
   add.appendChild(addIcon);
 
   let span = document.createElement("span");
+  span.classList.add("list__add-note__text");
   span.textContent = "Add note";
   add.appendChild(span);
 };

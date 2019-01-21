@@ -1,4 +1,6 @@
 /*    General settings     */
+@import url('https://fonts.googleapis.com/css?family=Righteous');
+
 * {
   margin: 0;
   padding: 0;
@@ -7,6 +9,19 @@
 body {
   box-sizing: border-box;
   transition: background-color 0.5s ease;
+}
+
+/*     Header     */
+h1 {
+  color: white;
+  font-size: 50px;
+  padding: 20px;
+  font-family: 'Righteous', cursive;
+  text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
 }
 
 /*     Theme Styling      */
@@ -34,8 +49,8 @@ body {
   right: 1rem;
   padding: 0;
   border: none;
-  background-color: #000000;
-  color: #ffffff;
+  background-color: white;
+  color: red;
   border-radius: 28px;
   box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2),
     0px 6px 10px 0px rgba(0, 0, 0, 0.14),
@@ -43,16 +58,84 @@ body {
   transition: box-shadow 0.25s ease-in-out;
   outline: none;
   cursor: pointer;
+  border: 1px solid red;
 }
 
 .add-list:hover {
   box-shadow: 0 14px 30px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
 
-.add-list:active {
-  background-color: #323232;
-}
-
 .add-list__icon {
   padding: 16px;
+}
+
+/*     List styling     */
+.list {
+  height: 100px;
+  width: 250px;
+  background-color: white;
+  padding: 20px;
+  margin-left: 30px;
+  margin-top: 10px;
+  border: 7px;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.25);
+  border-top-style: solid;
+  border-top-color: #ef5350;
+  position: relative;
+}
+
+.list:hover {
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+/*    List title     */
+.list__title {
+  height: 30px;
+  width: 220px;
+  font-size: 15px;
+  position: absolute;
+  top: 7px;
+  left: 25px;
+  outline: none;
+  text-align: center;
+}
+
+.list__remove {
+  padding: 0;
+  border: none;
+  background-color: white;
+  color: red;
+  position: absolute;
+  right: 5px;
+  top: 7px;
+  outline: none;
+  cursor: pointer;
+  width: 34px;
+  height: 34px;
+  text-align: center;
+  line-height: 34px;
+}
+
+.list__remove:hover {
+  background-color: red;
+  color: white;
+}
+
+.list__add-note {
+  color: red;
+  width: 100%;
+  background-color: white;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  border: none;
+  border-top: 1px solid red;
+  text-align: center;
+  outline: none;
+}
+
+.list__add-note__text {
+  position: absolute;
+  font-size: 17px;
+  line-height: 24px;
 }
