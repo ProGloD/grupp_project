@@ -1,0 +1,126 @@
+/*    General settings     */
+@import url('https://fonts.googleapis.com/css?family=Righteous');
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  box-sizing: border-box;
+  /*background-color: #191923; */
+  background-color: white;
+}
+
+/*     FAB Styling     */
+.add-list {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  padding: 0;
+  border: none;
+  background-color: white;
+  color: red;
+  border-radius: 28px;
+  box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2),
+    0px 6px 10px 0px rgba(0, 0, 0, 0.14),
+    0px 1px 18px 0px rgba(0, 0, 0, 0.12);
+  transition: box-shadow 0.25s ease-in-out;
+  outline: none;
+  cursor: pointer;
+}
+
+.add-list:hover {
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+/* .add-list:active {
+  background-color: #F4E1D4;
+} */
+.add-list__icon {
+  padding: 16px;
+}
+
+/*------------------------------uzi-testing---------*/
+.list {
+  height: 100px;
+  width: 250px;
+  background-color: white;
+  padding: 20px;
+  margin-left: 30px;
+  margin-top: 10px;
+  border: 7px;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.25);
+  border-top-style: solid;
+  border-top-color: #ef5350;
+  position: relative;
+
+}
+
+.list:hover {
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+.list__remove {
+  padding: 0;
+  border: none;
+  background-color: white;
+  color: red;
+  position:absolute;
+  right:5px;
+  top: 5px;
+  outline:none;
+}
+
+.list__remove:hover {
+
+  color:blue;
+}
+
+
+.list__add{
+
+  color: red;
+  background-color: white;
+  position: absolute;
+  bottom: 5px;
+  left: 50%;
+  transform: translate(-50%,0);
+  border: 10px;
+  outline: none;
+
+  /* width: 30px; */
+
+}
+
+
+h1 {
+  color: white;
+  font-size: 50px;
+  padding: 20px;
+  font-family: 'Righteous', cursive;
+  text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
+}
+
+input {
+  height: 30px;
+  width: 220px;
+  font-size: 15px;
+  position: absolute;
+  top: 7px;
+  left: 25px;
+  outline: none;
+  text-align: center;
+}
+
+span .add_note_text{
+  position: absolute;
+  font-size: 17px;
+  line-height: 24px;
+
+
+
+}
