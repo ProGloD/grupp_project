@@ -40,10 +40,9 @@ function addList() {
   list.appendChild(title);
 
   // Remove button
-  let remove = document.createElement("i");
-  remove.classList.add("material-icons");
+  let remove = document.createElement("button");
   remove.classList.add("list__remove");
-  remove.textContent = "clear";
+  remove.textContent = "X";
   remove.setAttribute("title", "Remove list");
   remove.addEventListener("click", removeList);
   list.appendChild(remove);
@@ -54,12 +53,17 @@ function addList() {
   list.appendChild(listView);
 
   // Add item button
-  let add = document.createElement("i");
-  add.classList.add("material-icons");
+  let add = document.createElement("button");
   add.classList.add("list__add-note");
-  add.textContent = "add";
+  add.textContent = "+";
   add.setAttribute("title", "Add note");
   add.addEventListener("click", addNote);
+  add.onmouseenter = function() {
+    this.textContent = "Add note";
+  };
+  add.onmouseout = function() {
+    this.textContent = "+";
+  };
   list.appendChild(add);
 };
 
