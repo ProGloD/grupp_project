@@ -7,15 +7,13 @@ const theme = document.querySelector(".theme");
 theme.addEventListener("click", themeChanger);
 
 function themeChanger() {
-  const themeIcon = document.querySelector(".theme__icon");
-
   body.classList.toggle("dark");
-  theme.classList.toggle("theme--dark");
+  this.classList.toggle("theme--dark");
 
   if (body.classList.contains("dark")) {
-    themeIcon.textContent = "brightness_5";
+    this.textContent = "brightness_5";
   } else {
-    themeIcon.textContent = "brightness_3";
+    this.textContent = "brightness_3";
   }
 }
 
