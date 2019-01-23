@@ -31,21 +31,27 @@ function addList() {
   list.classList.add("list");
   main.appendChild(list);
 
+  // Lists top bar
+  const topBar = document.createElement("div");
+  topBar.classList.add("list__top-bar");
+  list.appendChild(topBar);
+
   // Title
   let title = document.createElement("input");
-  title.classList.add("list__title");
+  title.classList.add("list__top-bar__title");
   title.value = "New list";
   title.addEventListener("click", changeListTitle);
   title.addEventListener("blur", checkIfEmpty);
-  list.appendChild(title);
+  topBar.appendChild(title);
 
   // Remove button
   let remove = document.createElement("button");
-  remove.classList.add("list__remove");
-  remove.textContent = "X";
+  remove.classList.add("material-icons");
+  remove.classList.add("list__top-bar__remove");
   remove.setAttribute("title", "Remove list");
+  remove.textContent = "delete";
   remove.addEventListener("click", removeList);
-  list.appendChild(remove);
+  topBar.appendChild(remove);
 
   // Note viewer
   let listView = document.createElement("div");
@@ -54,22 +60,18 @@ function addList() {
 
   // Add item button
   let add = document.createElement("button");
+  add.classList.add("material-icons");
   add.classList.add("list__add-note");
-  add.textContent = "+";
+  add.setAttribute("title", "Add note");
+  add.textContent = "add";
   add.setAttribute("title", "Add note");
   add.addEventListener("click", addNote);
-  add.onmouseenter = function() {
-    this.textContent = "Add note";
-  };
-  add.onmouseout = function() {
-    this.textContent = "+";
-  };
   list.appendChild(add);
 };
 
 // remove list
 function removeList() {
-  main.removeChild(this.parentNode);
+  main.removeChild(this.parentNode.parentNode);
 }
 
 // change list title
