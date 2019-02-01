@@ -58,7 +58,6 @@ h1 {
   bottom: 2rem;
   right: 2rem;
   padding: 1rem;
-  border: none;
   background-color: white;
   color: red;
   border-radius: 28px;
@@ -79,6 +78,7 @@ h1 {
 .list {
   display: inline-block;
   min-width: 250px;
+  max-width: 250px;
   height: fit-content;
   margin: 0 4px;
   background-color: white;
@@ -94,14 +94,14 @@ h1 {
   box-shadow: 0 14px 30px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
 
-.list__top-bar {
+.list__header {
   display: flex;
   border-bottom: 1px solid red;
   height: 34px;
 }
 
 /*    List title     */
-.list__top-bar__title {
+.list__header__title {
   height: 100%;
   width: 100%;
   font-size: 15px;
@@ -110,7 +110,7 @@ h1 {
   border: none;
 }
 
-.list__top-bar__remove {
+.list__header__removeList {
   padding: 0;
   border: none;
   background-color: red;
@@ -124,18 +124,18 @@ h1 {
   transition: 0.25s;
 }
 
-.list__top-bar__remove:hover {
+.list__header__removeList:hover {
   color: white;
   background-color: red;
   width: 50%;
 }
 
-.list__view {
+.list__main {
   clear: both;
   padding: 1rem;
 }
 
-.list__add-note {
+.list__addNote {
   margin-top: 5px;
   color: red;
   width: 100%;
@@ -149,7 +149,7 @@ h1 {
   transition: 0.5s;
 }
 
-.list__add-note:hover {
+.list__addNote:hover {
   background-color: red;
   color: white;
 }
@@ -161,4 +161,22 @@ h1 {
 
 .note:not(:first-child) {
   margin-top: 0.5rem;
+}
+
+.note__header {
+  position: relative;
+}
+
+.menu {
+  display: none;
+  position: absolute;
+  z-index: 1;
+  overflow: auto;
+  width: 100px;
+  height: 150px;
+  background-color: grey;
+}
+
+.show {
+  display: block;
 }

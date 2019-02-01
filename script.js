@@ -4,6 +4,18 @@ let listCounter = 0;
 
 let lists = [];
 
+let dropDownmenu = document.createElement("ul");
+dropDownmenu.classList.add("menu");
+main.appendChild(dropDownmenu);
+
+window.onclick = function(event) {
+  if (!event.target.matches(".note__header__menu")) {
+    if (dropDownmenu.classList.contains('show')) {
+      dropDownmenu.classList.remove('show');
+    }
+  }
+}
+
 function List(defaultTitle) {
   this.id = defaultTitle.toLowerCase();
   this.defaultTitle = defaultTitle;
@@ -18,12 +30,12 @@ function List(defaultTitle) {
 
     // Lists top bar
     const topBar = document.createElement("div");
-    topBar.classList.add("list__top-bar");
+    topBar.classList.add("list__header");
     list.appendChild(topBar);
 
     // Title
     let title = document.createElement("input");
-    title.classList.add("list__top-bar__title");
+    title.classList.add("list__header__title");
     title.value = "New list";
     title.addEventListener("click", this.resetTitle);
     title.addEventListener("blur", this.changeTitle);
@@ -32,7 +44,7 @@ function List(defaultTitle) {
     // Remove button
     let remove = document.createElement("button");
     remove.classList.add("material-icons");
-    remove.classList.add("list__top-bar__remove");
+    remove.classList.add("list__header__removeList");
     remove.setAttribute("title", "Remove list");
     remove.textContent = "clear";
     remove.addEventListener("click", this.removeList);
@@ -40,16 +52,15 @@ function List(defaultTitle) {
 
     // Note viewer
     let listView = document.createElement("div");
-    listView.classList.add("list__view");
+    listView.classList.add("list__main");
     list.appendChild(listView);
 
     // Add item button
     let add = document.createElement("button");
     add.classList.add("material-icons");
-    add.classList.add("list__add-note");
+    add.classList.add("list__addNote");
     add.setAttribute("title", "Add note");
     add.textContent = "add";
-    add.setAttribute("title", "Add note");
     add.addEventListener("click", this.addNote);
     list.appendChild(add);
   };
@@ -73,7 +84,7 @@ function List(defaultTitle) {
   };
 
   this.addNote = (e) => {
-    let listView = document.querySelector("#" + this.id + " .list__view");
+    let listView = document.querySelector("#" + this.id + " .list__main");
     let note = new Note("Note" + (this.notesCount++));
 
     listView.appendChild(note.create());
@@ -88,20 +99,29 @@ function Note(defaultTitle) {
     note.classList.add("note");
 
     let topBar = document.createElement("div");
-    topBar.classList.add("note__top-bar");
+    topBar.classList.add("note__header");
     note.appendChild(topBar);
 
     let title = document.createElement("input");
-    title.classList.add("note__top-bar__title");
+    title.classList.add("note__header__title");
     title.placeholder = "Note title"
     title.value = this.title;
     topBar.appendChild(title);
 
     let menu = document.createElement("button");
     menu.classList.add("material-icons");
-    menu.classList.add("note__top-bar__menu");
+    menu.classList.add("note__header__menu");
     menu.textContent = "more_vert";
     topBar.appendChild(menu);
+
+    menu.addEventListener("click", (e) => {
+      if (!dropDownmenu.classList.contains("show")) {
+        dropDownmenu.classList.add("show");
+      }
+
+      dropDownmenu.style.left = e.pageX + "px";
+      dropDownmenu.style.top = e.pageY + "px";
+    });
 
     let desc = document.createElement("textarea");
     desc.classList.add("note__desc");
@@ -118,7 +138,7 @@ function Note(defaultTitle) {
 
   this.date = () => {
     let d = new Date();
-    let time = "created " + d.getHours() + ":" + d.getMinutes() + " " + d.getDate() + "/" + (d.getMonth() + 1) + "/" + d.getFullYear();
+    let time = "created " + d.toLocaleString();
 
     return time;
   };
