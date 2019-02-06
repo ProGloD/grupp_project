@@ -24,7 +24,8 @@ function List(defaultTitle) {
     // Title
     let title = document.createElement("input");
     title.classList.add("list__header__title");
-    title.value = "New list";
+    this.title = "New list";
+    title.value = this.title;
     title.addEventListener("click", this.resetTitle);
     title.addEventListener("blur", this.changeTitle);
     topBar.appendChild(title);
@@ -173,6 +174,37 @@ function Note(defaultTitle) {
 
     dropDownmenu.appendChild(colorPicker);
     /*    end color picker     */
+
+    /*    move note     */
+    let move = document.createElement("div");
+    move.classList.add("menu__move");
+
+    let text = document.createElement("span");
+    text.classList.add("menu__move__text");
+    text.textContent = "Move to:"
+    move.appendChild(text);
+
+    let moveTo = document.createElement("select");
+    moveTo.classList.add("menu__move__moveTo");
+
+    menu.addEventListener("click", function() {
+      moveTo.innerHTML = "";
+      for (let list of lists) {
+        let option = document.createElement("option");
+        option.textContent = list.title;
+        option.value = list.id;
+
+        moveTo.appendChild(option);
+      }
+    });
+
+    moveTo.addEventListener("change", function() {
+      document.querySelector("#" + this.value + " .list__main").appendChild(note);
+    });
+    move.appendChild(moveTo);
+
+    dropDownmenu.appendChild(move);
+    /*    end move note     */
 
     /*    remove note     */
     let removeNote = document.createElement("button");

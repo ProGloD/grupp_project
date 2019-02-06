@@ -224,6 +224,13 @@ h1 {
   display: block;
 }
 
+.menu__move {
+  width: 100%;
+  height: calc(100% / 3);
+  background-color: white;
+  border-bottom: 1px solid black;
+}
+
 .menu__removeNote {
   width: 100%;
   height: calc(100% / 3);
