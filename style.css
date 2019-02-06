@@ -223,3 +223,13 @@ h1 {
 .container__color:checked~.container__checkmark::after {
   display: block;
 }
+
+.menu__removeNote {
+  width: 100%;
+  height: calc(100% / 3);
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background-color: red;
+  color: white;
+}

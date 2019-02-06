@@ -35,7 +35,10 @@ function List(defaultTitle) {
     remove.classList.add("list__header__removeList");
     remove.setAttribute("title", "Remove list");
     remove.textContent = "clear";
-    remove.addEventListener("click", this.removeList);
+    remove.addEventListener("click", function() {
+      main.removeChild(list);
+      lists.splice(lists.indexOf(list), 1);
+    });
     topBar.appendChild(remove);
 
     // Note viewer
@@ -72,11 +75,6 @@ function List(defaultTitle) {
       title.value = this.defaultTitle;
     }
     this.title = title.value;
-  };
-
-  this.removeList = (e) => {
-    main.removeChild(e.target.parentNode.parentNode);
-    lists.splice(lists.indexOf(this), 1);
   };
 
   this.addNote = (e) => {
@@ -175,6 +173,19 @@ function Note(defaultTitle) {
 
     dropDownmenu.appendChild(colorPicker);
     /*    end color picker     */
+
+    /*    remove note     */
+    let removeNote = document.createElement("button");
+    removeNote.classList.add("material-icons");
+    removeNote.classList.add("menu__removeNote");
+    removeNote.title = "Remove note";
+    removeNote.textContent = "delete";
+    removeNote.addEventListener("click", function() {
+      note.parentNode.removeChild(note);
+    });;
+
+    dropDownmenu.appendChild(removeNote);
+    /*    end remove note     */
 
 
     let d = document.createElement("p");
