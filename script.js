@@ -5,18 +5,6 @@ let noteCouner = 0;
 
 let lists = [];
 
-let dropDownmenu = document.createElement("ul");
-dropDownmenu.classList.add("menu");
-main.appendChild(dropDownmenu);
-
-window.onclick = function(event) {
-  if (!event.target.matches(".note__header__menu")) {
-    if (dropDownmenu.classList.contains('show')) {
-      dropDownmenu.classList.remove('show');
-    }
-  }
-}
-
 function List(defaultTitle) {
   this.id = defaultTitle.toLowerCase();
   this.defaultTitle = defaultTitle;
@@ -26,14 +14,6 @@ function List(defaultTitle) {
     let list = document.createElement("div");
     list.classList.add("list");
     list.id = this.id;
-    list.ondragover = function(e) {
-      e.preventDefault();
-    };
-    list.ondrop = function(e) {
-      e.preventDefault();
-      let data = e.dataTransfer.getData("text");
-      e.target.appendChild(document.querySelector("#" + data));
-    };
     main.appendChild(list);
 
     // Lists top bar
@@ -61,6 +41,14 @@ function List(defaultTitle) {
     // Note viewer
     let listView = document.createElement("div");
     listView.classList.add("list__main");
+    listView.ondragover = function(e) {
+      e.preventDefault();
+    };
+    listView.ondrop = function(e) {
+      e.preventDefault();
+      let data = e.dataTransfer.getData("text");
+      e.target.appendChild(document.querySelector("#" + data));
+    };
     list.appendChild(listView);
 
     // Add item button
@@ -117,7 +105,7 @@ function Note(defaultTitle) {
 
     let title = document.createElement("input");
     title.classList.add("note__header__title");
-    title.placeholder = "Note title"
+    title.placeholder = "Note title";
     title.value = this.title;
     topBar.appendChild(title);
 
@@ -127,19 +115,67 @@ function Note(defaultTitle) {
     menu.textContent = "more_vert";
     topBar.appendChild(menu);
 
+    let dropDownmenu = document.createElement("div");
+    dropDownmenu.classList.add("menu");
+    dropDownmenu.addEventListener("mouseout", function(e) {
+      let child = dropDownmenu.contains(e.toElement);
+      if (!child) {
+        this.classList.toggle("show");
+      }
+    });
+    topBar.appendChild(dropDownmenu);
+
     menu.addEventListener("click", (e) => {
       if (!dropDownmenu.classList.contains("show")) {
         dropDownmenu.classList.add("show");
       }
 
-      dropDownmenu.style.left = e.pageX + "px";
-      dropDownmenu.style.top = e.pageY + "px";
+      dropDownmenu.style.left = e.clientX + "px";
+      dropDownmenu.style.top = e.clientY + "px";
     });
 
     let desc = document.createElement("textarea");
     desc.classList.add("note__desc");
     desc.placeholder = "Description...";
     note.appendChild(desc);
+
+    /*    color picker     */
+    let colorPicker = document.createElement("div");
+    colorPicker.classList.add("menu__colorPicker");
+
+    let colors = ["white", "lightgreen", "yellow", "orange", "lightblue", "lightpink"];
+
+    for (let color of colors) {
+      let colorContainer = document.createElement("label");
+      colorContainer.classList.add("menu__colorPicker__container");
+
+      let bgcolor = document.createElement("input");
+      bgcolor.classList.add("container__color");
+      bgcolor.type = "radio";
+      bgcolor.name = "color" + note.id;
+      bgcolor.value = color;
+      if (color === "white") {
+        bgcolor.checked = "checked";
+      }
+      bgcolor.addEventListener("click", function() {
+        note.style.backgroundColor = this.value;
+        title.style.backgroundColor = this.value;
+        desc.style.backgroundColor = this.value;
+      });
+
+      colorContainer.appendChild(bgcolor);
+
+      let checkmark = document.createElement("span");
+      checkmark.classList.add("container__checkmark");
+      checkmark.style.backgroundColor = color;
+      colorContainer.appendChild(checkmark);
+
+      colorPicker.appendChild(colorContainer);
+    }
+
+    dropDownmenu.appendChild(colorPicker);
+    /*    end color picker     */
+
 
     let d = document.createElement("p");
     d.classList.add("note__date");
@@ -186,14 +222,8 @@ function addList() {
   lists.push(list);
 };
 
-// create note menu
-function noteMenu() {}
-
 // remove note
 function removeNote() {}
 
 // move note to another list
 function moveNote() {}
-
-// color picker for note background
-function colorPicker() {}

@@ -15,9 +15,6 @@ body {
 main {
   display: flex;
   user-select: none;
-  height: calc(100% - 102px);
-  overflow-x: auto;
-  overflow-y: hidden;
   padding-bottom: 1rem;
 }
 
@@ -163,20 +160,66 @@ h1 {
   margin-top: 0.5rem;
 }
 
-.note__header {
-  position: relative;
-}
-
 .menu {
   display: none;
   position: absolute;
   z-index: 1;
   overflow: auto;
-  width: 100px;
-  height: 150px;
-  background-color: grey;
+  width: 150px;
+  height: 225px;
+  border: 1px solid black;
 }
 
 .show {
+  display: block;
+}
+
+.menu__colorPicker {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  height: calc(100% / 3);
+  border-bottom: 1px solid black;
+}
+
+.menu__colorPicker__container {
+  position: relative;
+  width: calc(100% / 3);
+  height: calc(100% / 2);
+  cursor: pointer;
+  user-select: none;
+}
+
+.container__color {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.container__checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.container__checkmark::after {
+  content: "";
+  position: absolute;
+  display: none;
+  left: 35%;
+  top: 15%;
+  transform: translate(-50%, -50%);
+  transform: rotate(45deg);
+  width: 10px;
+  height: 20px;
+  border: solid grey;
+  border-width: 0 3px 3px 0;
+}
+
+.container__color:checked~.container__checkmark::after {
   display: block;
 }
