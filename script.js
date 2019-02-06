@@ -1,6 +1,7 @@
 const body = document.querySelector("body");
 const main = document.querySelector("main");
 let listCounter = 0;
+let noteCouner = 0;
 
 let lists = [];
 
@@ -20,12 +21,19 @@ function List(defaultTitle) {
   this.id = defaultTitle.toLowerCase();
   this.defaultTitle = defaultTitle;
   this.title = "";
-  this.notesCount = 0;
   this.create = function() {
     // List
     let list = document.createElement("div");
     list.classList.add("list");
     list.id = this.id;
+    list.ondragover = function(e) {
+      e.preventDefault();
+    };
+    list.ondrop = function(e) {
+      e.preventDefault();
+      let data = e.dataTransfer.getData("text");
+      e.target.appendChild(document.querySelector("#" + data));
+    };
     main.appendChild(list);
 
     // Lists top bar
@@ -85,7 +93,7 @@ function List(defaultTitle) {
 
   this.addNote = (e) => {
     let listView = document.querySelector("#" + this.id + " .list__main");
-    let note = new Note("Note" + (this.notesCount++));
+    let note = new Note("Note" + (noteCouner++));
 
     listView.appendChild(note.create());
   };
@@ -96,6 +104,11 @@ function Note(defaultTitle) {
   this.title = "New note";
   this.create = () => {
     let note = document.createElement("div");
+    note.draggable = true;
+    note.id = "note" + noteCouner;
+    note.ondragstart = function(e) {
+      e.dataTransfer.setData("text", e.target.id);
+    }
     note.classList.add("note");
 
     let topBar = document.createElement("div");
