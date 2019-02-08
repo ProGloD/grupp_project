@@ -141,7 +141,7 @@ function Note(defaultTitle) {
     let colorPicker = document.createElement("div");
     colorPicker.classList.add("menu__colorPicker");
 
-    let colors = ["white", "lightgreen", "yellow", "orange", "lightblue", "lightpink"];
+    let colors = ["#ffffff", "#008744", "#0057e7", "#d62d20", "#ffa700", "#7B1FA2"];
 
     for (let color of colors) {
       let colorContainer = document.createElement("label");
