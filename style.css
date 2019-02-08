@@ -95,17 +95,18 @@ h1 {
 .list__header {
   display: flex;
   border-bottom: 1px solid red;
-  height: 34px;
 }
 
 /*    List title     */
 .list__header__title {
-  height: 100%;
-  width: 100%;
-  font-size: 15px;
+  min-height: 34px;
+  width: 90%;
+  font-size: 20px;
+  line-height: 34px;
   outline: none;
   text-align: center;
   border: none;
+  cursor: pointer;
 }
 
 .list__header__removeList {
@@ -116,7 +117,7 @@ h1 {
   outline: none;
   cursor: pointer;
   width: 10%;
-  height: 100%;
+  height: auto;
   text-align: center;
   line-height: 34px;
   transition: 0.25s;

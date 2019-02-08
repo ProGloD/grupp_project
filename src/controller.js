@@ -1,7 +1,7 @@
 import viewHeader from "./view/viewHeader";
 import themeChanger from "./view/viewThemeChanger";
 import addList from "./view/viewAddList";
-import viewList from "./view/viewList";
+import List from "./view/viewList";
 
 const body = document.body;
 const header = document.querySelector("header");
@@ -26,8 +26,7 @@ themeChanger.init(body, function() {
 // render add list button
 addList.init(body, function() {
   // on click create list
-  viewList.init(main, function(e) {
-    let list = e.target.parentNode.parentNode;
-    viewList.removeList(main, list);
+  let list = new List(main, function() {
+    return "new note";
   });
 });

@@ -42,52 +42,79 @@
     }
   };
 
-  var viewList = {
-    init: function(element, remove) {
-      let list = document.createElement("div");
-      list.classList.add("list");
+  function List(element, note) {
+    /*    list element     */
+    let list = document.createElement("div");
+    list.classList.add("list");
 
-      let header = document.createElement("div");
-      header.classList.add("list__header");
+    /*    list header element     */
+    let header = document.createElement("div");
+    header.classList.add("list__header");
 
-      let title = document.createElement("input");
-      title.classList.add("list__header__title");
-      title.placeholder = "List title...";
-      title.value = "New list";
-      header.appendChild(title);
+    /*    list title     */
+    let title = document.createElement("h2");
+    title.classList.add("list__header__title");
+    title.textContent = "New list";
+    // text content backup
+    let backup = "";
+    // on click make title editable
+    title.onclick = function() {
+      backup = title.textContent;
+      title.contentEditable = true;
+      // select all text in title
+      let range = document.createRange();
+      range.selectNodeContents(title);
+      let sel = window.getSelection();
+      sel.removeAllRanges();
+      sel.addRange(range);
+    };
+    // remove editable when no longer on focus
+    title.onblur = function() {
+      if (!title.textContent) {
+        title.textContent = backup;
+      }
+      title.contentEditable = false;
+    };
+    header.appendChild(title);
+    /*    end list title     */
 
-      let removeList = document.createElement("button");
-      removeList.classList.add("material-icons");
-      removeList.classList.add("list__header__removeList");
-      removeList.setAttribute("title", "Remove list");
-      removeList.textContent = "clear";
-      removeList.addEventListener("click", remove);
-      header.appendChild(removeList);
-
-      list.appendChild(header);
-
-      let main = document.createElement("div");
-      main.classList.add("list__main");
-
-      list.appendChild(main);
-
-      let addNote = document.createElement("button");
-      addNote.classList.add("material-icons");
-      addNote.classList.add("list__addNote");
-      addNote.setAttribute("title", "Add note");
-      addNote.textContent = "add";
-
-      list.appendChild(addNote);
-
-      this.list = list;
-
-      element.appendChild(list);
-    },
-
-    removeList: function(element, list) {
+    /*    remove list     */
+    // on click removes list
+    let remove = document.createElement("button");
+    remove.classList.add("material-icons");
+    remove.classList.add("list__header__removeList");
+    remove.setAttribute("title", "Remove list");
+    remove.textContent = "clear";
+    remove.onclick = function() {
       element.removeChild(list);
-    }
-  };
+    };
+    header.appendChild(remove);
+    /*    end remove list     */
+
+    list.appendChild(header);
+    /*    end list header element     */
+
+    /*    list main element     */
+    let main = document.createElement("div");
+    main.classList.add("list__main");
+    list.appendChild(main);
+    /*    end list main element*/
+
+    /*    list add new note element     */
+    let newNote = document.createElement("button");
+    newNote.classList.add("material-icons");
+    newNote.classList.add("list__addNote");
+    newNote.setAttribute("title", "Add note");
+    newNote.textContent = "add";
+    newNote.onclick = function() {
+      main.appendChild(note());
+    };
+    list.appendChild(newNote);
+    /*     end list new note element     */
+
+    element.appendChild(list);
+    /*    end list element     */
+  }
 
   const body = document.body;
   const header = document.querySelector("header");
@@ -112,9 +139,8 @@
   // render add list button
   addList.init(body, function() {
     // on click create list
-    viewList.init(main, function(e) {
-      let list = e.target.parentNode.parentNode;
-      viewList.removeList(main, list);
+    let list = new List(main, function() {
+      return "new note";
     });
   });
 
