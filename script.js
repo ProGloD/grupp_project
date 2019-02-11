@@ -46,6 +46,7 @@ function List(defaultTitle) {
     let listView = document.createElement("div");
     listView.classList.add("list__main");
     listView.ondragover = function(e) {
+      e.stopPropagation();
       e.preventDefault();
     };
     listView.ondrop = function(e) {
@@ -159,7 +160,8 @@ function Note(defaultTitle) {
       bgcolor.addEventListener("click", function() {
         note.style.backgroundColor = this.value;
         title.style.backgroundColor = this.value;
-        desc.style.backgroundColor = this.value;
+        desc.style.backgroundColor = "#ffffff80";
+        console.log(desc.style.backgroundColor);
       });
 
       colorContainer.appendChild(bgcolor);
