@@ -192,16 +192,13 @@ h1 {
 /*        Note       */
 .note {
   display: block;
-
 }
-
-
 
 .note:not(:first-child) {
   margin-top: 0.5rem;
 }
 
-.note__header{
+.note__header {
   width: 100%;
   height: 31px;
   /* padding-bottom: px; */
@@ -212,8 +209,8 @@ h1 {
   width: 85%;
   height: 31px;
   font-size: 17px;
-  line-height: 25px;
-  border:none;
+  line-height: 31px;
+  border: none;
   padding-left: 10px;
 }
 
@@ -232,9 +229,7 @@ h1 {
   font-size: 15px;
   box-shadow: inset 0 0 10px #000000;
   padding: 10px;
-
   background-blend-mode: lighten;
-
 }
 
 .note__header__menu {
@@ -244,12 +239,10 @@ h1 {
   height: 100%;
   width: 31px;
   background: none;
-
-
 }
 
 .note__header__menu:hover {
-  color:#D44638;
+  color: #D44638;
 }
 
 .menu {

@@ -1,9 +1,10 @@
 export default {
-  init: function(className, title, button) {
+  init: function(className, arr) {
     let header = document.createElement("div");
     header.classList.add(className);
-    header.appendChild(title);
-    header.appendChild(button);
+    for (let el of arr) {
+      header.appendChild(el);
+    }
 
     return header;
   }
