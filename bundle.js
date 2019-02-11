@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  var viewHeader = {
+  var mainHeader = {
     init: function() {
       let header = document.createElement("h1");
       header.textContent = "qNOTE";
@@ -10,122 +10,122 @@
     }
   };
 
-  var themeChanger = {
-    init: function(onClick) {
-      let container = document.createElement("div");
-      container.classList.add("container-theme-changer");
+  var header = {
+    init: function(className, title, button) {
+      let header = document.createElement("div");
+      header.classList.add(className);
+      header.appendChild(title);
+      header.appendChild(button);
 
-      let btn = document.createElement("button");
-      btn.classList.add("material-icons");
-      btn.classList.add("theme");
-      btn.textContent = "brightness_3";
-      btn.onclick = onClick;
-
-      container.appendChild(btn);
-
-      return container;
+      return header;
     }
   };
 
-  var addList = {
-    init: function(onClick) {
-      let container = document.createElement("div");
-      container.classList.add("container-add-list");
+  var main = {
+    init: function(className) {
+      let main = document.createElement("div");
+      main.classList.add(className);
 
-      let btn = document.createElement("button");
-      btn.classList.add("material-icons");
-      btn.classList.add("add-list");
-      btn.textContent = "playlist_add";
-      btn.onclick = onClick;
-
-      container.appendChild(btn);
-
-      return container;
+      return main;
     }
   };
 
-  function List(element, newList, newNote) {
-    /*    list element     */
-    let list = document.createElement("div");
-    list.classList.add("list");
-    list.id = newList.id;
+  var button = {
+    init: function(text, className, onClick) {
+      let button = document.createElement("button");
+      button.classList.add("material-icons");
+      button.classList.add(className);
+      button.textContent = text;
+      button.addEventListener("click", onClick);
 
-    /*    list header element     */
-    let header = document.createElement("div");
-    header.classList.add("list__header");
+      return button;
+    }
+  };
 
-    /*    list titel     */
-    let title = document.createElement("h2");
-    title.classList.add("list__header__title");
-    title.textContent = newList.titel;
-    // text content backup
-    let backup = "";
-    // on click make title editable
-    title.onclick = function() {
-      backup = title.textContent;
-      title.contentEditable = true;
-      // select all text in title
-      let range = document.createRange();
-      range.selectNodeContents(title);
-      let sel = window.getSelection();
-      sel.removeAllRanges();
-      sel.addRange(range);
-    };
-    // remove editable when no longer on focus
-    title.onblur = function() {
-      if (!title.textContent) {
-        title.textContent = backup;
-      }
-      title.contentEditable = false;
-    };
-    header.appendChild(title);
-    /*    end list title     */
+  var title = {
+    init: function(text, className) {
+      let title = document.createElement("span");
+      title.classList.add(className);
+      title.textContent = text;
 
-    /*    remove list     */
-    // on click removes list
-    let remove = document.createElement("button");
-    remove.classList.add("material-icons");
-    remove.classList.add("list__header__removeList");
-    remove.setAttribute("title", "Remove list");
-    remove.textContent = "clear";
-    remove.onclick = function() {
-      element.removeChild(list);
-    };
-    header.appendChild(remove);
-    /*    end remove list     */
+      // text content backup
+      let backup = "";
 
-    list.appendChild(header);
-    /*    end list header element     */
+      // on click make title editable
+      title.onclick = function() {
+        backup = title.textContent;
+        title.contentEditable = true;
 
-    /*    list main element     */
-    let main = document.createElement("div");
-    main.classList.add("list__main");
-    list.appendChild(main);
-    /*    end list main element*/
+        // select all text in title
+        let range = document.createRange();
+        range.selectNodeContents(title);
+        let sel = window.getSelection();
+        sel.removeAllRanges();
+        sel.addRange(range);
+      };
 
-    /*    list add new note element     */
-    let addNote = document.createElement("button");
-    addNote.classList.add("material-icons");
-    addNote.classList.add("list__addNote");
-    addNote.setAttribute("title", "Add note");
-    addNote.textContent = "add";
-    addNote.onclick = function() {
-      main.appendChild(newNote);
-    };
-    list.appendChild(addNote);
-    /*     end list new note element     */
+      // remove editable when no longer on focus
+      title.onblur = function() {
 
-    return list;
-    /*    end list element     */
-  }
+        // if title is empty put revious back
+        if (!title.textContent) {
+          title.textContent = backup;
+        }
 
-  function Note(newNote) {
-    let note = document.createElement("div");
-    note.classList.add("note");
-    note.id = newNote.id;
+        title.contentEditable = false;
+      };
 
-    return note;
-  }
+      return title;
+    }
+  };
+
+  var description = {
+    init: function(className) {
+      let desc = document.createElement("textarea");
+      desc.classList.add(className);
+      desc.placeholder = "Description...";
+
+      return desc;
+    }
+  };
+
+  var date = {
+    init: function(className) {
+      let date = document.createElement("p");
+      date.classList.add(className);
+      date.textContent = "created " + new Date().toLocaleString();
+
+      return date;
+    }
+  };
+
+  var List = {
+    init: function(id, header, main, addNote) {
+      let list = document.createElement("div");
+      list.classList.add("list");
+      list.id = id;
+
+      list.appendChild(header);
+      list.appendChild(main);
+      list.appendChild(addNote);
+
+      return list;
+    }
+  };
+
+  var Note = {
+    init: function(id, header, description, date) {
+      let note = document.createElement("div");
+      note.classList.add("note");
+      note.id = id;
+
+      note.appendChild(header);
+      note.appendChild(description);
+      note.appendChild(date);
+
+      return note;
+    }
+  };
 
   var model = {
     listCount: 0,
@@ -135,7 +135,7 @@
       this.listCount++;
       let list = {
         id: "list" + this.listCount,
-        titel: "New list"
+        title: "New list"
       };
 
       this.allLists.push(list);
@@ -145,7 +145,7 @@
       this.noteCount++;
       let note = {
         id: "note" + this.noteCount,
-        titel: "New note"
+        title: "New note"
       };
 
       return note;
@@ -162,14 +162,13 @@
   };
 
   const body = document.body;
-  const header = document.querySelector("header");
-  const main = document.querySelector("main");
+  const mainEl = document.querySelector("main");
 
   // render header text
-  view.render(header, viewHeader.init());
+  view.render(document.querySelector("header"), mainHeader.init());
 
   // render theme changer button
-  view.render(body, themeChanger.init(function() {
+  view.render(body, button.init("brightness_3", "theme", function() {
     // on click switch between dark and light mode
     body.classList.toggle("dark");
     this.classList.toggle("theme--dark");
@@ -182,9 +181,39 @@
   }));
 
   // render add list button
-  view.render(body, addList.init(function() {
+  view.render(body, button.init("playlist_add", "add-list", function() {
+    let newList = model.createList();
+
+    let listTitle = title.init(newList.title, "list__header__title");
+    let removeList = button.init("clear", "list__header__removeList", function() {
+      mainEl.removeChild(list);
+    });
+
+    let listHeader = header.init("list__header", listTitle, removeList);
+    let listMain = main.init("list__main");
+    let addNote = button.init("add", "list__addNote", createNote);
+
+    let list = new List.init(newList.id, listHeader, listMain, addNote);
+
     // on click create list
-    view.render(main, new List(main, model.createList(), new Note(model.createNote())));
+    view.render(mainEl, list);
+
+    function createNote() {
+      let newNote = model.createNote();
+
+      let noteTitle = title.init(newNote.title, "note__header__title");
+      let noteMenuButton = button.init("more_vert", "note__header__menu", function() {
+
+      });
+
+      let noteHeader = header.init("note__header", noteTitle, noteMenuButton);
+      let noteDesc = description.init("note__desc");
+      let noteDate = date.init("note__date");
+
+      let note = new Note.init(newNote.id, noteHeader, noteDesc, noteDate);
+
+      view.render(listMain, note);
+    }
   }));
 
 }());

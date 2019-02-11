@@ -6,7 +6,7 @@ export default {
     this.listCount++;
     let list = {
       id: "list" + this.listCount,
-      titel: "New list"
+      title: "New list"
     };
 
     this.allLists.push(list);
@@ -16,7 +16,7 @@ export default {
     this.noteCount++;
     let note = {
       id: "note" + this.noteCount,
-      titel: "New note"
+      title: "New note"
     };
 
     return note;
