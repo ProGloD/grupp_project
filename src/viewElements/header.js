@@ -1,8 +1,8 @@
 export default {
-  init: function(element) {
+  init: function() {
     let header = document.createElement("h1");
     header.textContent = "qNOTE";
 
-    element.appendChild(header);
+    return header;
   }
 };

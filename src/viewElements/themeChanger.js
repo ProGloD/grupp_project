@@ -1,5 +1,5 @@
 export default {
-  init: function(element, onClick) {
+  init: function(onClick) {
     let container = document.createElement("div");
     container.classList.add("container-theme-changer");
 
@@ -7,9 +7,10 @@ export default {
     btn.classList.add("material-icons");
     btn.classList.add("theme");
     btn.textContent = "brightness_3";
-    btn.addEventListener("click", onClick);
+    btn.onclick = onClick;
 
     container.appendChild(btn);
-    element.appendChild(container);
+
+    return container;
   }
 };

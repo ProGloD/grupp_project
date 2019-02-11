@@ -1,16 +1,17 @@
-export default function(element, note) {
+export default function(element, newList, newNote) {
   /*    list element     */
   let list = document.createElement("div");
   list.classList.add("list");
+  list.id = newList.id;
 
   /*    list header element     */
   let header = document.createElement("div");
   header.classList.add("list__header");
 
-  /*    list title     */
+  /*    list titel     */
   let title = document.createElement("h2");
   title.classList.add("list__header__title");
-  title.textContent = "New list";
+  title.textContent = newList.titel;
   // text content backup
   let backup = "";
   // on click make title editable
@@ -57,17 +58,17 @@ export default function(element, note) {
   /*    end list main element*/
 
   /*    list add new note element     */
-  let newNote = document.createElement("button");
-  newNote.classList.add("material-icons");
-  newNote.classList.add("list__addNote");
-  newNote.setAttribute("title", "Add note");
-  newNote.textContent = "add";
-  newNote.onclick = function() {
-    main.appendChild(note());
+  let addNote = document.createElement("button");
+  addNote.classList.add("material-icons");
+  addNote.classList.add("list__addNote");
+  addNote.setAttribute("title", "Add note");
+  addNote.textContent = "add";
+  addNote.onclick = function() {
+
   }
-  list.appendChild(newNote);
+  list.appendChild(addNote);
   /*     end list new note element     */
 
-  element.appendChild(list);
+  return list;
   /*    end list element     */
 };

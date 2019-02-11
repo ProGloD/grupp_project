@@ -1,17 +1,20 @@
-import viewHeader from "./view/viewHeader";
-import themeChanger from "./view/viewThemeChanger";
-import addList from "./view/viewAddList";
-import List from "./view/viewList";
+import viewHeader from "./viewElements/header";
+import themeChanger from "./viewElements/themeChanger";
+import addList from "./viewElements/addList";
+import List from "./viewElements/list";
+import Note from "./viewElements/note";
+import model from "./model";
+import view from "./view";
 
 const body = document.body;
 const header = document.querySelector("header");
 const main = document.querySelector("main");
 
 // render header text
-viewHeader.init(header);
+view.render(header, viewHeader.init());
 
 // render theme changer button
-themeChanger.init(body, function() {
+view.render(body, themeChanger.init(function() {
   // on click switch between dark and light mode
   body.classList.toggle("dark");
   this.classList.toggle("theme--dark");
@@ -21,12 +24,10 @@ themeChanger.init(body, function() {
   } else {
     this.textContent = "brightness_3";
   }
-});
+}));
 
 // render add list button
-addList.init(body, function() {
+view.render(body, addList.init(function() {
   // on click create list
-  let list = new List(main, function() {
-    return "new note";
-  });
-});
+  view.render(main, new List(main, model.createList(), model.createNote()));
+}));

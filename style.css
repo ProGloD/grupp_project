@@ -35,6 +35,7 @@ h1 {
     -1px 1px 0 #000,
     1px 1px 0 #000;
   letter-spacing: 3px;
+  cursor: default;
 }
 
 #a, #b, #c, #d, #e {
@@ -100,7 +101,7 @@ h1 {
   transition: box-shadow 0.25s ease-in-out;
   outline: none;
   cursor: pointer;
-  border: 1px solid white;
+  border: 1px solid #D44638;
 }
 
 .add-list:hover {
@@ -253,7 +254,7 @@ h1 {
   transform: rotate(45deg);
   width: 10px;
   height: 20px;
-  border: solid white;
+  border: solid #666;
   border-width: 0 3px 3px 0;
 }
 

@@ -1,5 +1,5 @@
 export default {
-  init: function(element, onClick) {
+  init: function(onClick) {
     let container = document.createElement("div");
     container.classList.add("container-add-list");
 
@@ -7,9 +7,10 @@ export default {
     btn.classList.add("material-icons");
     btn.classList.add("add-list");
     btn.textContent = "playlist_add";
-    btn.addEventListener("click", onClick);
+    btn.onclick = onClick;
 
     container.appendChild(btn);
-    element.appendChild(container);
+
+    return container;
   }
 };

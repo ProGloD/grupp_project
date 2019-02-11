@@ -153,7 +153,7 @@ function Note(defaultTitle) {
       bgcolor.type = "radio";
       bgcolor.name = "color" + note.id;
       bgcolor.value = color;
-      if (color === "white") {
+      if (color === "#ffffff") {
         bgcolor.checked = "checked";
       }
       bgcolor.addEventListener("click", function() {
@@ -236,8 +236,6 @@ function Note(defaultTitle) {
   };
 }
 
-
-
 // Change theme mode
 document.querySelector(".theme").addEventListener("click", themeChanger);
 
@@ -264,9 +262,3 @@ function addList() {
 
   lists.push(list);
 };
-
-// remove note
-function removeNote() {}
-
-// move note to another list
-function moveNote() {}
