@@ -198,6 +198,30 @@ h1 {
   margin-top: 0.5rem;
 }
 
+.note__header__title {
+  outline: none;
+  width: 80%;
+}
+
+.note__date {
+  text-align: center;
+  font-size: 11px;
+}
+
+.note__desc {
+  outline: none;
+  width: 90%;
+  height: 82px;
+  border: none;
+  resize: none;
+}
+
+.note__header__menu {
+  border: none;
+  outline: none;
+  bottom: 0px;
+}
+
 .menu {
   display: none;
   position: absolute;
