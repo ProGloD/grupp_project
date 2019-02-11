@@ -110,7 +110,7 @@
     addNote.setAttribute("title", "Add note");
     addNote.textContent = "add";
     addNote.onclick = function() {
-
+      main.appendChild(newNote);
     };
     list.appendChild(addNote);
     /*     end list new note element     */
@@ -119,8 +119,17 @@
     /*    end list element     */
   }
 
+  function Note(newNote) {
+    let note = document.createElement("div");
+    note.classList.add("note");
+    note.id = newNote.id;
+
+    return note;
+  }
+
   var model = {
     listCount: 0,
+    noteCount: 0,
     allLists: [],
     createList: function() {
       this.listCount++;
@@ -133,7 +142,13 @@
       return list;
     },
     createNote: function() {
+      this.noteCount++;
+      let note = {
+        id: "note" + this.noteCount,
+        titel: "New note"
+      };
 
+      return note;
     },
     getAllLists: function() {
       return this.allLists;
@@ -169,7 +184,7 @@
   // render add list button
   view.render(body, addList.init(function() {
     // on click create list
-    view.render(main, new List(main, model.createList(), model.createNote()));
+    view.render(main, new List(main, model.createList(), new Note(model.createNote())));
   }));
 
 }());

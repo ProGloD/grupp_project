@@ -64,7 +64,7 @@ export default function(element, newList, newNote) {
   addNote.setAttribute("title", "Add note");
   addNote.textContent = "add";
   addNote.onclick = function() {
-
+    main.appendChild(newNote);
   }
   list.appendChild(addNote);
   /*     end list new note element     */

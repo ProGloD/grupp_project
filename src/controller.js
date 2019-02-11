@@ -29,5 +29,5 @@ view.render(body, themeChanger.init(function() {
 // render add list button
 view.render(body, addList.init(function() {
   // on click create list
-  view.render(main, new List(main, model.createList(), model.createNote()));
+  view.render(main, new List(main, model.createList(), new Note(model.createNote())));
 }));
