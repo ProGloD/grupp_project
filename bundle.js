@@ -318,7 +318,12 @@
       function onNoteDrop(e) {
         e.stopPropagation();
         let data = e.dataTransfer.getData("text");
-        view.render(note.parentNode, [document.querySelector("#" + data)]);
+        let el = document.querySelector("#" + data);
+        if (this.nextSibling) {
+          this.parentNode.insertBefore(el, this.nextSibling);
+        } else {
+          view.render(this.parentNode, [el]);
+        }
       }
 
       function onMenuButtonClick(e) {
