@@ -1,8 +1,8 @@
 export default {
-  init: function(text, className) {
+  init: function(el, className) {
     let title = document.createElement("span");
     title.classList.add(className);
-    title.textContent = text;
+    title.textContent = el.title;
 
     // text content backup
     let backup = "";
@@ -28,6 +28,7 @@ export default {
         title.textContent = backup;
       }
 
+      el.title = title.textContent;
       title.contentEditable = false;
     };
 
