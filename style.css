@@ -7,18 +7,10 @@
   box-sizing: border-box;
 }
 
-.title_highlight {
-  color: #B23121;
-}
-
 body {
   transition: background-color 0.5s;
   height: 100vh;
   background-color: #232F34;
-}
-
-p {
-  color: black;
 }
 
 main {
@@ -111,7 +103,6 @@ h1 {
   display: flex;
 }
 
-/*    List title     */
 .list__header__title {
   min-height: 34px;
   width: 90%;
@@ -166,7 +157,7 @@ h1 {
   color: white;
 }
 
-/*        Note       */
+/*        Note styling       */
 .note {
   display: block;
   background-color: #C0C0C0;
@@ -180,7 +171,6 @@ h1 {
   width: 100%;
   height: 33px;
   box-shadow: -1px -4px 3px rgba(0, 0, 0, 0.25);
-  background-color: #C0C0C0;
 }
 
 .note__header__title {
@@ -196,6 +186,7 @@ h1 {
 .note__date {
   text-align: center;
   font-size: 11px;
+  color: black;
 }
 
 .note__desc {
@@ -223,6 +214,7 @@ h1 {
   color: #F9AA33;
 }
 
+/*     Menu styling     */
 .menu {
   display: none;
   position: absolute;

@@ -12,7 +12,7 @@ export default {
       bgcolor.type = "radio";
       bgcolor.name = "color" + id;
       bgcolor.value = color;
-      if (color === "#ffffff") {
+      if (color === colors[0]) {
         bgcolor.checked = "checked";
       }
       bgcolor.addEventListener("click", onClick);
