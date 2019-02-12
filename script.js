@@ -145,7 +145,7 @@ function Note(defaultTitle) {
     let colorPicker = document.createElement("div");
     colorPicker.classList.add("menu__colorPicker");
 
-    let colors = ["#ffffff", "#008744", "#0057e7", "#d62d20", "#ffa700", "#7B1FA2"];
+    let colors = ["#ffffff", "#C70039", "#F08080", "#008080", "#F9AA33", "#C0C0C0"];
 
     for (let color of colors) {
       let colorContainer = document.createElement("label");
