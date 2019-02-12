@@ -156,7 +156,7 @@ function Note(defaultTitle) {
       bgcolor.type = "radio";
       bgcolor.name = "color" + note.id;
       bgcolor.value = color;
-      if (color === "#ffffff") {
+      if (color === "#C0C0C0") {
         bgcolor.checked = "checked";
       }
       bgcolor.addEventListener("click", function() {
