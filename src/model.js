@@ -23,5 +23,8 @@ export default {
   },
   getAllLists: function() {
     return this.allLists;
+  },
+  removeList: function(list) {
+    this.allLists.splice(this.allLists.indexOf(list), 1)
   }
 }

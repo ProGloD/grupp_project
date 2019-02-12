@@ -57,6 +57,7 @@ function addNewList() {
 
   function onRemoveListClick() {
     mainEl.removeChild(list);
+    model.removeList(newList);
   }
 
   function createNote() {
@@ -132,7 +133,7 @@ function addNewList() {
     }
 
     function onRemoveNoteClick() {
-      listMain.removeChild(note);
+      note.parentNode.removeChild(note);
     }
   }
 }

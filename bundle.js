@@ -26,6 +26,9 @@
     },
     getAllLists: function() {
       return this.allLists;
+    },
+    removeList: function(list) {
+      this.allLists.splice(this.allLists.indexOf(list), 1);
     }
   };
 
@@ -259,6 +262,7 @@
 
     function onRemoveListClick() {
       mainEl.removeChild(list);
+      model.removeList(newList);
     }
 
     function createNote() {
@@ -334,7 +338,7 @@
       }
 
       function onRemoveNoteClick() {
-        listMain.removeChild(note);
+        note.parentNode.removeChild(note);
       }
     }
   }
