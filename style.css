@@ -14,7 +14,11 @@
 body {
   transition: background-color 0.5s;
   height: 100vh;
-  background-color: #EEEEEE;
+  background-color: #232F34;
+}
+
+p {
+  color: grey;
 }
 
 main {
@@ -25,7 +29,7 @@ main {
 
 /*     Header     */
 h1 {
-  color: white;
+  color: #4A6572;
   font-size: 50px;
   padding: 20px;
   font-family: 'Righteous', cursive;
@@ -38,7 +42,7 @@ h1 {
   cursor: default;
 }
 
-#a, #b, #c, #d, #e {
+/* #a, #b, #c, #d, #e {
   transition: all 8s ease-out;
 }
 
@@ -65,8 +69,7 @@ h1 {
 #e:hover {
   color: #008744;
   transition: .30s;
-}
-
+} */
 /*     Theme Styling      */
 .theme {
   position: fixed;
@@ -75,15 +78,19 @@ h1 {
   border: none;
   background: none;
   outline: none;
-  color: #233740;
+  color: #4A6572;
+}
+
+.theme:hover {
+  color: #F9AA33;
 }
 
 .theme--dark {
-  color: #EEEEEE;
+  color: #4A6572;
 }
 
 .dark {
-  background-color: #233740;
+  background-color: black;
 }
 
 /*     FAB Styling     */
@@ -115,9 +122,9 @@ h1 {
   max-width: 250px;
   height: fit-content;
   margin: 0 4px;
-  background-color: white;
+  background-color: #344955;
   box-shadow: 0 14px 30px rgba(0, 0, 0, 0.25);
-  border-top: 5px solid #B23121;
+  border-top: 5px solid #F9AA33;
 }
 
 .list:first-child {
@@ -130,7 +137,7 @@ h1 {
 
 .list__header {
   display: flex;
-  border-bottom: 1px solid #B23121;
+  /* border-bottom: 2px solid #B23121; */
 }
 
 /*    List title     */
@@ -141,15 +148,16 @@ h1 {
   line-height: 34px;
   outline: none;
   text-align: center;
-  border: none;
   cursor: pointer;
+  /* border-left: 2px solid #B23121; */
+  background-color: #4A6572;
 }
 
 .list__header__removeList {
   padding: 0;
   border: none;
-  background-color: #B23121;
-  color: white;
+  background-color: #4A6572;
+  color: #F9AA33;
   outline: none;
   cursor: pointer;
   width: 10%;
@@ -161,31 +169,31 @@ h1 {
 
 .list__header__removeList:hover {
   color: white;
-  background-color: #D44638;
+  background-color: #F9AA33;
   width: 50%;
 }
 
 .list__main {
   clear: both;
-  padding: 1rem;
+  padding: 0.8rem;
 }
 
 .list__addNote {
   margin-top: 5px;
-  color: #D44638;
+  color: #F9AA33;
   width: 100%;
   height: 34px;
   border: none;
-  border-top: 1px solid #D44638;
+  /* border-top: 2px solid #D44638; */
   outline: none;
   text-align: center;
   cursor: pointer;
-  background-color: white;
+  background-color: #4A6572;
   transition: 0.5s;
 }
 
 .list__addNote:hover {
-  background-color: #D44638;
+  background-color: #F9AA33;
   color: white;
 }
 
@@ -200,8 +208,9 @@ h1 {
 
 .note__header {
   width: 100%;
-  height: 31px;
-  /* padding-bottom: px; */
+  height: 33px;
+  box-shadow: -1px -4px 3px rgba(0, 0, 0, 0.25)
+    /* padding-bottom: px; */
 }
 
 .note__header__title {
@@ -224,12 +233,12 @@ h1 {
   width: 100%;
   height: 88px;
   border: none;
-  border-radius: 3px;
+  border-radius-topBar: 3px;
   resize: none;
   font-size: 15px;
   box-shadow: inset 0 0 10px #000000;
   padding: 10px;
-  background-blend-mode: lighten;
+  background-color: #4A6572;
 }
 
 .note__header__menu {
@@ -239,10 +248,11 @@ h1 {
   height: 100%;
   width: 31px;
   background: none;
+  float: right;
 }
 
 .note__header__menu:hover {
-  color: #D44638;
+  color: #F9AA33;
 }
 
 .menu {
@@ -252,7 +262,8 @@ h1 {
   overflow: auto;
   width: 130px;
   height: 225px;
-  border: 1px solid black;
+  border: 5px solid #4A6572;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.25);
 }
 
 .show {
@@ -264,7 +275,7 @@ h1 {
   flex-wrap: wrap;
   width: 100%;
   height: calc(100% / 3);
-  border-bottom: 1px solid black;
+  border-bottom: 3px solid #4A6572;
 }
 
 .menu__colorPicker__container {
@@ -313,7 +324,7 @@ h1 {
   width: 100%;
   height: calc(100% / 3);
   background-color: white;
-  border-bottom: 1px solid black;
+  border-bottom: 3px solid #4A6572;
 }
 
 .menu__removeNote {
