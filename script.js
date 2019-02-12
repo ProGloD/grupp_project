@@ -46,7 +46,6 @@ function List(defaultTitle) {
     let listView = document.createElement("div");
     listView.classList.add("list__main");
     listView.ondragover = function(e) {
-      e.stopPropagation();
       e.preventDefault();
     };
     listView.ondrop = function(e) {
@@ -96,6 +95,9 @@ function Note(defaultTitle) {
     note.id = "note" + noteCouner;
     note.ondragstart = function(e) {
       e.dataTransfer.setData("text", e.target.id);
+    }
+    note.ondrop = function(e) {
+      e.stopPropagation();
     }
     note.classList.add("note");
 

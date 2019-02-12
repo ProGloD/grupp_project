@@ -92,9 +92,11 @@
   };
 
   var main = {
-    init: function(className) {
+    init: function(className, onDragOver, onDrop) {
       let main = document.createElement("div");
       main.classList.add(className);
+      main.addEventListener("dragover", onDragOver);
+      main.addEventListener("drop", onDrop);
 
       return main;
     }
@@ -211,10 +213,13 @@
   };
 
   var Note = {
-    init: function(id) {
+    init: function(id, onDragStart, onDrop) {
       let note = document.createElement("div");
       note.classList.add("note");
       note.id = id;
+      note.draggable = true;
+      note.addEventListener("dragstart", onDragStart);
+      note.addEventListener("drop", onDrop);
 
       return note;
     }
@@ -251,7 +256,7 @@
 
     view.render(listHeader, [listTitle, removeList]);
 
-    let listMain = main.init("list__main");
+    let listMain = main.init("list__main", onListMainDragOver, onListMainDrop);
     let addNote = button.init("add", "list__addNote", createNote);
 
     // render in list elements
@@ -260,6 +265,16 @@
     // render list
     view.render(mainEl, [list]);
 
+    function onListMainDragOver(e) {
+      e.preventDefault();
+    }
+
+    function onListMainDrop(e) {
+      e.preventDefault();
+      let data = e.dataTransfer.getData("text");
+      view.render(e.target, [document.querySelector("#" + data)]);
+    }
+
     function onRemoveListClick() {
       mainEl.removeChild(list);
       model.removeList(newList);
@@ -267,7 +282,7 @@
 
     function createNote() {
       let newNote = model.createNote();
-      let note = Note.init(newNote.id);
+      let note = Note.init(newNote.id, onNoteDragStart, onNoteDrop);
 
       let noteHeader = header.init("note__header");
 
@@ -295,6 +310,16 @@
 
       view.render(note, [noteHeader, noteDesc, noteDate]);
       view.render(listMain, [note]);
+
+      function onNoteDragStart(e) {
+        e.dataTransfer.setData("text/plain", e.target.id);
+      }
+
+      function onNoteDrop(e) {
+        e.stopPropagation();
+        let data = e.dataTransfer.getData("text");
+        view.render(note.parentNode, [document.querySelector("#" + data)]);
+      }
 
       function onMenuButtonClick(e) {
         if (!noteMenu.classList.contains("show")) {

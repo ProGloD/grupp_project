@@ -46,7 +46,7 @@ function addNewList() {
 
   view.render(listHeader, [listTitle, removeList]);
 
-  let listMain = main.init("list__main");
+  let listMain = main.init("list__main", onListMainDragOver, onListMainDrop);
   let addNote = button.init("add", "list__addNote", createNote)
 
   // render in list elements
@@ -55,6 +55,16 @@ function addNewList() {
   // render list
   view.render(mainEl, [list]);
 
+  function onListMainDragOver(e) {
+    e.preventDefault();
+  }
+
+  function onListMainDrop(e) {
+    e.preventDefault();
+    let data = e.dataTransfer.getData("text");
+    view.render(e.target, [document.querySelector("#" + data)]);
+  }
+
   function onRemoveListClick() {
     mainEl.removeChild(list);
     model.removeList(newList);
@@ -62,7 +72,7 @@ function addNewList() {
 
   function createNote() {
     let newNote = model.createNote();
-    let note = Note.init(newNote.id);
+    let note = Note.init(newNote.id, onNoteDragStart, onNoteDrop);
 
     let noteHeader = header.init("note__header");
 
@@ -90,6 +100,16 @@ function addNewList() {
 
     view.render(note, [noteHeader, noteDesc, noteDate]);
     view.render(listMain, [note]);
+
+    function onNoteDragStart(e) {
+      e.dataTransfer.setData("text/plain", e.target.id);
+    }
+
+    function onNoteDrop(e) {
+      e.stopPropagation();
+      let data = e.dataTransfer.getData("text");
+      view.render(note.parentNode, [document.querySelector("#" + data)]);
+    }
 
     function onMenuButtonClick(e) {
       if (!noteMenu.classList.contains("show")) {
